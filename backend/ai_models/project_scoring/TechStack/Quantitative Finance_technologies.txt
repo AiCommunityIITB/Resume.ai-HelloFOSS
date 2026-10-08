@@ -1,0 +1,88 @@
+C++
+SQL
+Machine Learning
+Deep Learning
+Reinforcement Learning
+Monte Carlo Simulation
+Quantitative Finance
+Risk Management
+Portfolio Management
+High Frequency Trading
+Options Pricing
+Derivatives Pricing
+Black-Scholes Model
+Binomial Model
+GARCH
+ARIMA
+Value at Risk
+Financial Risk Analysis
+Portfolio Optimization
+Asset Allocation
+Technical Analysis
+Fundamental Analysis
+Economic Analysis
+Macroeconomic Analysis
+Econometrics
+Statistical Modeling
+Optimization
+Linear Programming
+Stochastic Processes
+Stochastic Calculus
+Numerical Methods
+Game Theory
+Market Microstructure
+Order Book Management
+Risk Assessment
+Data Visualization
+Data Preprocessing
+Feature Engineering
+Regression Analysis
+Hypothesis Testing
+Financial Mathematics
+Computational Finance
+Quantitative Research
+Research Analysis
+Web Scraping
+API Integration
+Real-time Data Processing
+System Design
+Algorithm Design
+Data Structures
+Concurrent Programming
+Performance Optimization
+Financial Markets
+Bond Analysis
+Equity Analysis
+Credit Risk
+ESG Analysis
+Sustainable Finance
+Corporate Finance
+DCF Valuation
+Financial Ratios
+Cash Flow Analysis
+Cost-Benefit Analysis
+Competitive Analysis
+Market Research
+Business Analysis
+Predictive Modeling
+Forecasting
+Pattern Recognition
+Signal Processing
+Mathematical Programming
+Operations Research
+Decision Analysis
+Scenario Analysis
+Sensitivity Analysis
+Financial Reporting
+Quantitative Trading
+Systematic Trading
+Equity Research
+Derivatives Trading
+Technology Implementation
+Project Management
+Presentation Skills
+Communication Skills
+Problem Solving
+Critical Thinking
+Attention to Detail
+Analytical Thinking

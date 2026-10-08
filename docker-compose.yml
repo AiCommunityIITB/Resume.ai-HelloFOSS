@@ -1,0 +1,149 @@
+version: '3.8'
+x-common-backend-variables: &common-backend-variables
+  DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in your local environment}
+  SECRET_KEY: ${SECRET_KEY}
+  ALGORITHM: ${ALGORITHM}
+  ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES}
+  ENVIRONMENT: production
+  SECURE_COOKIES: "true"
+  DB_POOL_SIZE: ${DB_POOL_SIZE}
+  DB_MAX_OVERFLOW: ${DB_MAX_OVERFLOW}
+  DB_POOL_RECYCLE: ${DB_POOL_RECYCLE}
+  DB_POOL_TIMEOUT: ${DB_POOL_TIMEOUT}
+  DB_ECHO: ${DB_ECHO}
+  DB_POOL_PRE_PING: ${DB_POOL_PRE_PING}
+  PROJECTS_DB_URL: ${PROJECTS_DB_URL}
+  WORKEX_DB_URL: ${WORKEX_DB_URL}
+  POR_DB_URL: ${POR_DB_URL}
+  CLASSIFIER_MODEL_PATH: ${CLASSIFIER_MODEL_PATH:-/app/private-models/my_distilbert_model}
+  LAYOUT_STATS_CSV: ${LAYOUT_STATS_CSV:-/app/ai_models/whitespace_layout_scorer/output_stats.csv}
+  AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+  AZURE_CONTAINER_NAME: ${AZURE_CONTAINER_NAME}
+  GEMINI_API_KEY: ${GEMINI_API_KEY}
+  CEREBRAS_API_KEY_1: ${CEREBRAS_API_KEY_1}
+  CEREBRAS_API_KEY_2: ${CEREBRAS_API_KEY_2}
+  CEREBRAS_API_KEY_3: ${CEREBRAS_API_KEY_3}
+  CEREBRAS_API_KEY_4: ${CEREBRAS_API_KEY_4}
+  CEREBRAS_API_KEY_5: ${CEREBRAS_API_KEY_5}
+  CEREBRAS_API_KEY_6: ${CEREBRAS_API_KEY_6}
+  CEREBRAS_API_KEY_7: ${CEREBRAS_API_KEY_7}
+  CEREBRAS_API_KEY_8: ${CEREBRAS_API_KEY_8}
+  FRONTEND_PUBLIC_URL: ${FRONTEND_PUBLIC_URL}
+  BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL}
+  TOKENIZERS_PARALLELISM: "false"
+  GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+  EMAIL_USER: ${EMAIL_USER}
+  EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+  SMTP_SERVER: ${SMTP_SERVER}
+  SMTP_PORT: ${SMTP_PORT}
+  PASSWORD_RESET_URL: ${PASSWORD_RESET_URL}
+
+services:
+  db:
+    image: "postgres:15-alpine"
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-resume_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your local environment}
+      POSTGRES_DB: ${POSTGRES_DB:-resume_app}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 15s
+      timeout: 10s
+      retries: 15
+      start_period: 30s
+
+  migration:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: resumerater-migration
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      <<: *common-backend-variables
+    command: ["python", "run_db_init.py"]
+    restart: on-failure
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: resumerater-backend
+    volumes:
+      - ./uploads:/app/uploads
+      - backend-logs:/app/logs
+    environment:
+      <<: *common-backend-variables
+      PORT: 8000
+    depends_on:
+      migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - app-network
+    privileged: false
+    read_only: false
+    cap_drop:
+      - ALL
+    expose:
+      - "8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_BASE_URL: ${NEXT_PUBLIC_BACKEND_BASE_URL}
+        NEXT_PUBLIC_SSO_PROJECT_ID: ${NEXT_PUBLIC_SSO_PROJECT_ID}
+        NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+    container_name: resumerater-frontend
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - app-network
+    privileged: false
+    read_only: false
+    volumes:
+      - frontend-next:/app/.next
+    cap_drop:
+      - ALL
+    expose:
+      - "3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_BASE_URL=${NEXT_PUBLIC_BACKEND_BASE_URL}
+      - NEXT_PUBLIC_SSO_PROJECT_ID=${NEXT_PUBLIC_SSO_PROJECT_ID}
+      - NEXT_PUBLIC_GOOGLE_CLIENT_ID=${NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+
+volumes:
+  postgres-data:
+  backend-logs:
+  frontend-next:
+
+networks:
+  app-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+      com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"

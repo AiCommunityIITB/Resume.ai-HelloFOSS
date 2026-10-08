@@ -1,0 +1,123 @@
+Web Development
+JavaScript
+React
+Angular
+Vue.js
+TypeScript
+HTML
+CSS
+Node.js
+Express.js
+REST API
+Web Security
+Cross-Browser Compatibility
+Responsive Design
+Frontend Optimization
+Backend Development
+Python
+C++
+C
+Django
+Flask
+SQL
+PostgreSQL
+SQLite
+MongoDB
+Database Design
+API Development
+Authentication Systems
+Mobile Development
+Android Development
+Flutter
+Mobile App Development
+Cross-Platform Development
+AWS
+Cloud Deployment
+Machine Learning
+Neural Networks
+Computer Vision
+Data Analysis
+Python Libraries
+Data Structures
+Algorithms
+Embedded Systems
+Arduino
+Raspberry Pi
+IoT
+Hardware Programming
+Real-Time Systems
+Firmware Development
+System Programming
+Operating Systems
+Linux System Programming
+Memory Management
+Multithreading
+Concurrency
+Process Management
+System Calls
+Computer Architecture
+CPU Architecture
+Assembly Language
+RISC Architecture
+Pipeline Design
+Cache Management
+Memory Systems
+Processor Design
+Digital Signal Processing
+Signal Processing
+Image Processing
+Filter Design
+Digital Circuit Design
+Analog Circuit Design
+Robotics
+Control Systems
+PID Control
+Motor Control
+Automation
+Path Planning
+Navigation
+Graphics & Game Development
+Game Development
+3D Modeling
+Computer Graphics
+Game Logic
+Animation
+Blockchain Development
+Smart Contracts
+Ethereum
+Cryptocurrency
+Web3 Development
+Network Programming
+Socket Programming
+Network Security
+Wireless Communication
+Network Protocols
+Data Visualization
+Statistical Analysis
+Security & Cryptography
+Cryptography
+Encryption
+Web Security.1
+Authentication
+Network Security.1
+Version Control
+Team Collaboration
+Project Management
+Testing & Quality Assurance
+Hardware Design
+PCB Design
+Circuit Design
+FPGA
+Hardware Testing
+Electronic Design
+CAD Design
+Software Engineering
+Object-Oriented Programming
+Design Patterns
+Software Architecture
+Code Optimization
+Documentation
+Debugging
+Database Design.1
+SQL.1
+CRUD Operations

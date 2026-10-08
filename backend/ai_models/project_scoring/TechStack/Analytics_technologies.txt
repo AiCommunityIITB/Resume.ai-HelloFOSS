@@ -1,0 +1,66 @@
+Python
+R
+SQL
+Excel
+MATLAB
+Pandas
+NumPy
+Matplotlib
+Seaborn
+Plotly
+Scikit-learn
+TensorFlow
+Machine Learning
+Deep Learning
+Neural Networks
+Random Forest
+Logistic Regression
+Linear Regression
+Classification
+Clustering
+K-Means
+PCA
+Principal Component Analysis
+Time Series Analysis
+Forecasting
+Predictive Modeling
+Regression Analysis
+Data Science
+Data Mining
+Data Preprocessing
+Data Cleaning
+Data Wrangling
+Feature Engineering
+Feature Selection
+Statistical Modeling
+Hypothesis Testing
+A/B Testing
+Cross-Validation
+Model Evaluation
+Hyperparameter Tuning
+Business Intelligence
+Dashboard Development
+Tableau
+ETL
+Big Data
+Hadoop
+Spark
+Cloud Computing
+GCP
+MySQL
+MongoDB
+Web Scraping
+API Integration
+Financial Analysis
+Market Analysis
+Supply Chain Analytics
+Healthcare Analytics
+GIS
+Geospatial Analysis
+Image Processing
+Signal Processing
+Optimization
+Simulation
+Process Improvement
+Project Management
+Statistical Software

@@ -1,0 +1,25 @@
+title = "Rizzume credential audit"
+[extend]
+useDefault = true
+[[rules]]
+id = "cerebras-api-key"
+description = "Cerebras API-key-shaped literal"
+regex = '''\bcsk-[A-Za-z0-9_-]{20,}\b'''
+keywords = ["csk-"]
+[[rules]]
+id = "groq-api-key"
+description = "Groq API-key-shaped literal"
+regex = '''\bgsk_[A-Za-z0-9]{20,}\b'''
+keywords = ["gsk_"]
+[[rules]]
+id = "database-credential-literal"
+description = "Credential-bearing database URI"
+regex = '''(?:postgres(?:ql)?(?:\+[\w]+)?|mysql(?:\+[\w]+)?|mssql(?:\+[\w]+)?)://[^\s"':@]+:([^@\s"']+)@'''
+secretGroup = 1
+keywords = ["postgres", "mysql", "mssql"]
+[[rules]]
+id = "compose-password-literal"
+description = "Quoted nonempty Compose database password"
+regex = '''POSTGRES_PASSWORD:\s*["']([^$"'\r\n]+)["']'''
+secretGroup = 1
+keywords = ["POSTGRES_PASSWORD"]

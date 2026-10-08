@@ -1,0 +1,32 @@
+# Secrets and generated account/resume data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.db
+*.sqlite
+*.sqlite3
+*.pdf
+uploads/
+logs/
+private-models/
+private-data/
+*.log
+*.zip
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+node_modules/
+.next/
+.pytest_cache/
+# Only separately reviewed model artifacts belong in source control.
+*.safetensors
+*.pt
+*.pth
+*.bin
